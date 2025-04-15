@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>حسابات الألعاب</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="theme-btn" onclick="toggleDarkMode()" title="تبديل المظهر">🌓</button>
+
+  <h2 id="loginTitle">تسجيل أو دخول</h2>
+
+  <div id="auth">
+    <input type="text" id="username" placeholder="اسمك"><br>
+    <input type="password" id="passcode" placeholder="رمز الدخول"><br>
+    <div id="loginError" style="color: #d32f2f; margin: 8px 0; display: none;"></div>
+    <button onclick="register()">تسجيل جديد</button>
+    <button onclick="login()">دخول</button>
+    <button onclick="loginAsGuest()" style="background: linear-gradient(135deg, #4CAF50, #388E3C)">دخول كضيف</button>
+  </div>
+
+  <div id="githubSetup" style="display: none;">
+    <input type="hidden" id="githubToken">
+  </div>
+
+  <div id="dashboard">
+    <h3>مرحباً <span id="playerName"></span></h3>
+    <button onclick="logout()">تسجيل خروج</button>
+    
+    <div id="addSectionDiv">
+      <h4>إضافة قسم جديد</h4>
+      <input type="text" id="sectionName" placeholder="اسم القسم">
+      <button onclick="addSection()">إضافة</button>
+    </div>
+    
+    <div id="sectionsContainer"></div>
+    
+    <div id="addFriendSection">
+      <h4>إضافة صديق</h4>
+      <input type="text" id="friendName" placeholder="اسم الصديق">
+      <select id="friendSection"></select>
+      <input type="text" id="friendUID" placeholder="معرف اللاعب (اختياري)">
+      <button onclick="addFriend()">إضافة</button>
+    </div>
+    
+    <div id="viewMode">
+      <h4>طريقة العرض</h4>
+      <button onclick="toggleView('sections')">عرض الأقسام</button>
+      <button onclick="toggleView('friends')">عرض الأصدقاء</button>
+      <div id="sectionsContainer" class="sections-list" style="display: none;">
+        <h4>الأقسام المتوفرة</h4>
+        <div id="sectionsList"></div>
+      </div>
+      
+      <div id="themeSettings">
+        <h4>إعدادات المظهر</h4>
+        <input type="color" id="themeColor" onchange="changeThemeColor(this.value)" value="#00bcd4">
+        <button onclick="resetTheme()">استعادة الألوان الافتراضية</button>
+      </div>
+      
+      <div id="dataManagement">
+        <h4>إدارة البيانات</h4>
+        <button onclick="exportData()">تصدير البيانات</button>
+        <button onclick="importData()">استيراد البيانات</button>
+        <button onclick="deleteAllAccounts()" style="background: linear-gradient(135deg, #f44336, #d32f2f)">حذف جميع الحسابات</button>
+      </div>
+    </div>
+    
+    <ul id="friendList" style="display: none;"></ul>
+  </div>
+  
+  <script src="github-api.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
